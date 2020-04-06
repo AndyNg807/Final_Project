@@ -57,7 +57,7 @@ app.use('/', express.static('public'));
 //using the convention to have all views in views folder.
 app.set('view engine', 'pug');
 
-
+//Modules 00.37
 
 //register end point
 app.get('/register', (req, res) => {

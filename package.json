@@ -1,5 +1,5 @@
 {
-  "name": "FinalProject",
+  "name": "Final_Project",
   "version": "1.0.0",
   "description": "This project using NodeJS, express, pug, body-parser, nodemon, mongoose, and multer. Database is mongogDB.",
   "main": "index.js",
