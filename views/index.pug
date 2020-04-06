@@ -1,0 +1,22 @@
+extends ./layout.pug
+
+block content
+    .main
+        .request_service
+            p Model Kit Painting or Staining in Vancouver, BC
+            a(href='mailto:info@modelkit.com.ca')
+                button.req_button.btn-red REQUEST SERVICE
+    .side
+        iframe.map(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.6152667238866!2d-123.11438858357127!3d49.28368697933145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54867178f9a2bb31%3A0xe46345c3b7e20516!2sThe%20Network%20Hub!5e0!3m2!1szh-TW!2sca!4v1585506394485!5m2!1szh-TW!2sca', frameborder='0', style='border:0;', allowfullscreen='', aria-hidden='false', tabindex='0')
+        .table
+            img(src='/img/web/map.png', alt='address')
+            p
+                | 422 Richards St #170, 
+                br
+                | Vancouver, BC V6B 2Z4
+        .table
+            img(src='/img/web/call.png', alt='phone')
+            p (778) 927-8807
+        .table
+            img(src='/img/web/mail.png', alt='email')
+            p info@modelkit.com.ca

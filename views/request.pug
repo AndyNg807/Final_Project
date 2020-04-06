@@ -1,0 +1,40 @@
+extends ./layout.pug
+
+block content
+    .form
+        form(action= variables.main.url, method='post', enctype='multipart/form-data')
+            p(class="title")= variables.main.title 
+            fieldset
+                label.hidden(for='id') id:
+                input#id(type='hidden', name='id', value= variables.srw._id)
+            fieldset
+                label(for='pcode') Product Code:
+                input#pcode(type='text', name='pcode', value= variables.srw.code)
+            fieldset
+                label(for='pname') Product Name:
+                input#pname(type='text', name='pname', value= variables.srw.name)
+            fieldset
+                label(for='release') Release month:
+                input#release(type='text', name='release', value= variables.srw.release)
+            fieldset
+                label(for='scale') Scale:
+                input#scale(type='text', name='scale', value= variables.srw.scale)
+            fieldset
+                label(for='price') Price:
+                input#price(type='number', name='price', value= variables.srw.price)
+            fieldset
+                label(for='part') Number of Parts:
+                input#part(type='text', name='part', value= variables.srw.parts)
+            fieldset
+                label(for='material') Material:
+                input#material(type='text', name='material', value= variables.srw.material)
+            fieldset
+                label(for='image') Image:
+                input#image.file-btn(type='file', onchange='readURL(this)', targetid='preview_img', name='image', accept='image/*')
+                label(for='image') Choose a file..
+            fieldset
+                input.button.btn-blue(type='submit', value='submit')
+                input.button.btn-red(type='reset', value='Reset')
+    .preview
+            p Image preview:
+            img#preview_img(src='/img/web/upload.png')

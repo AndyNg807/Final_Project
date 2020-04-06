@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1', charset='utf-8')
+    title progect test
+    link(href='/css/reset.css', rel='stylesheet')
+    link(href='/css/style.css', rel='stylesheet')
+    block styles
+    script(src='/js/script.js')
+    block scripts
+  body
+    .top
+      .top-left
+        p
+          | Date/Time: 
+          span#datetime
+      .top-right
+        a(href='/login')
+          button.button.btn-green Login
+        a(href='/register')
+          button.button.btn-blue Reigster
+        p(id="welcome")= variables.main.username
+    header
+      .logo
+        a(href='/')
+          p
+            | Model Kit 
+            img.mk(src='/img/web/mk.png', alt='logo')
+      nav
+        ul
+          li
+            a(href='/') Main
+          li
+            a(href='/product') Product
+          li
+            a(href='/about') About
+          li.hidden
+            a(href='/cart')
+              img.cart(src='/img/web/shopping-cart.png')
+              p(id="itemNo")= variables.main.count 
+    script.
+      layoutLogin(#{variables.main.stage});
+      adminLogin(#{variables.main.crud})
+    .container
+      footer
+        p © 2020 by Model Kit
+      block content
+    

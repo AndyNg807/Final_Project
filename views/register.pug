@@ -1,0 +1,31 @@
+extends ./layout.pug
+
+block content
+  .form
+    form.register(action='/addUser', method='post', onsubmit="registerCheck()", name='regisgter')
+      p.title Register
+      fieldset
+        label(for='username') Username:
+        input#username(type='text', name='username', onchange='usernameCheck(this.value)', required)
+        .requirements
+          | Least 4 characters.
+        p#usernameCheck.dataCheck
+      fieldset
+        label(for='password') Password:
+        input#password(type='password', name='password', onchange="passwordCheck(this.value)" required)
+        .requirements
+          | Password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.
+        p#passwordCheck.dataCheck
+      fieldset
+        label(for='email') Email:
+        input#email(type='text', name='email', onchange="emailCheck(this.value)"  required)
+        .requirements
+          | Please input a valid email.
+        p#emailCheck.dataCheck
+      fieldset
+        input.button.btn-blue(type='submit', value='Register', onclick="registerCheck(event)")
+        input.button.btn-red(type='reset', value='Reset')
+      #errors
+      #exist.hidden
+block scripts
+      

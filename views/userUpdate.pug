@@ -1,0 +1,28 @@
+extends ./layout.pug
+
+block content
+    .form
+        p.title User Control
+        form.register(action='/userUpdate' method='post')
+            fieldset
+                label.hidden(for='id') id:
+                input#id(type='hidden' name='id' value= variables.member._id)
+            fieldset
+                label(for='username') Username:
+                input#username(type='text' name='username' value= variables.member.name required)
+            fieldset
+                label(for='password') Password:
+                input#password(type='text' name='password' value= variables.member.password required)
+            fieldset
+                label(for='email') Email:
+                input#email(type='text' name='email' value= variables.member.email required)
+            fieldset
+                label Admin:
+                input#adminTrue(type='radio' value='true' name='admin')
+                label(for='adminTrue') Yes
+                input#adminFalse(type='radio' value='false' name='admin' checked)
+                label(for='adminFalse') No
+            fieldset
+                input.button.btn-blue(type='submit' value='Submit')
+                input.button.btn-red(type='reset' value='Reset')
+    #errors 

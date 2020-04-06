@@ -1,0 +1,28 @@
+extends ./layout.pug
+
+block content
+  p(class="title")= variables.srw.code
+  .product
+    .product_img
+      p(class="title")= variables.srw.name
+      img(src='/img/product/' + variables.srw.image, alt= variables.srw._id)
+    .product_details
+      div
+        h2 Product specifications
+        dl(class="specification clearfix")
+          dt Release month:
+          dd= variables.srw.release
+          dt Scale:
+          dd= variables.srw.scale
+          dt Price:
+          dd= "CAD" + variables.srw.price
+          dt Number of Parts:
+          dd= variables.srw.parts
+          dt Material:
+          dd= variables.srw.material
+      a.hidden
+        button.purchase.btn-blue(onclick="sendCart(this)", targetid='id=' + variables.srw._id + '&code=' + variables.srw.code + '&price=' + variables.srw.price + '&image=' + variables.srw.image)
+          img.cart(src='/img/web/shopping-cart.png')
+          | Purchases
+  script.
+    detail(#{variables.main.stage});

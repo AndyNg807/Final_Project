@@ -1,0 +1,13 @@
+extends ./layout.pug
+
+block content
+    p.title Plastic model
+    .product
+        each item in variables.srw
+            a(href='/product/' + item._id)
+                .card
+                    p(class="code")= item.code
+                    img(src='/img/product/' + item.image alt=item._id)
+                    p.bottom Details ➤
+    script.
+      cardAdmin(#{variables.main.crud});

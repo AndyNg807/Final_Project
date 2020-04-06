@@ -1,0 +1,58 @@
+extends ./layout.pug
+//-variables.main.cart[0].qty
+block content
+  .form
+    p.title shopping-cart
+    table.cartTable
+      tr
+        th PRODUCT
+        th CODE
+        th
+        th QTY
+        th
+        th PRICE
+        th TOTAL
+        th
+      each item in variables.main.cart
+        tr(targetid='id=' + item.id + '&code=' + item.code + '&price=' + item.price + '&image=' + item.image + '&qty=' + item.qty + '&total=' + item.total)
+          td
+            img(src='/img/product/' + item.image)
+          td= item.code
+          td
+            button.circle(onclick="addItem(this)") +
+          td= item.qty
+          td
+            button.circle(onclick=" reduceItem(this)") -
+          td= item.price
+          td= item.total
+          td
+            button.button.btn-red(onclick="deleteItem(this)") delete
+      tr
+        td
+        td
+        td
+        td
+        td
+        td SUBTOTAL
+        td= variables.main.sub
+        td
+      tr
+        td
+        td
+        td
+        td
+        td
+        td VAT
+        td= variables.main.vat
+        td
+      tr
+        td
+        td
+        td
+        td
+        td
+        td TOTAL
+        td(class="total_amount")= variables.main.ttl
+        td
+          button.button.btn-green(onclick="location.href='/logout';") CHECK OUT
+        

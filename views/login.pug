@@ -1,0 +1,18 @@
+extends ./layout.pug
+
+block content
+  .form
+    form(action='/userLogin', method='post', name='Login')
+      p.title Login
+      fieldset
+        label(for='username') Username:
+        input#email(type='text', name='username', required)
+      fieldset
+        label(for='password') Password:
+        input#password(type='text', name='password', required)
+      fieldset
+        input.button.btn-blue(type='submit', value='Submit')
+        input.button.btn-red(type='reset', value='Reset')
+      #errors= variables.main.error
+      p admin login: "admin", passward : "Admin000"
+      

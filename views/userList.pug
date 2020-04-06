@@ -1,0 +1,34 @@
+extends ./layout.pug
+
+block content
+    .form
+        p.title User Control
+        form.tableForm(action='/findUser' method='post')
+            label(for='findUser') Search by Name:
+            input#findUser(type='text' name='findUser')
+            input.button.btn-blue(type='submit' value='Search')
+        hr.line
+        p=  variables.main.result
+        table.userTable
+                tr
+                    th
+                    th User Name
+                    th Password
+                    th Email
+                    th Admin
+                    th
+                    th
+                each user in variables.member
+                    tr
+                        td
+                        td= user.name
+                        td= user.password
+                        td= user.email
+                        td= user.admin
+                        td
+                            a(href='/userUpdate/' + user._id)
+                                button.button.btn-green Update
+                        td
+                            a(href='/userDelete/' + user._id)
+                                button.button.btn-red Delete
+                
