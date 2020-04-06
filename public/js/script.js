@@ -5,91 +5,25 @@ document.getElementById("datetime").innerHTML = (("0"+(dt.getMonth()+1)).slice(-
 (("0"+dt.getDate()).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ dt.toLocaleTimeString();
 }
 
-//register check
+//register name regex 
 function validateUser(username) {
     const regex = /[a-zA-Z0-9_\.\-]{4,}/;
     return regex.test(username);
 }
 
+//register password regex
 function validatePass(password) {
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     return regex.test(password);
 }
 
+//register email regex
 function validateEmail(email) {
     const emailRegex = /^[\w\.\-]+@[a-zA-Z0-9\.]+\.[a-zA-Z]{2,6}$/;
     return emailRegex.test(email);
 }
 
-function errorMsg(){
-    document.getElementById('errors').innerHTML = 'Please input a valid username, password and email';
-}
-
-/*
-//edit
-async function usernameCheck(name){
-    const p = document.getElementById('username').nextElementSibling.nextElementSibling;
-    const exist = document.getElementById('exist');
-    return fetch('/dataCheck',{
-        method:"POST",
-        body:new URLSearchParams(`username=${name}`)
-    })
-    .then(function(response) {
-        if(response.status != 200){
-          console.log('response error');
-        }else{
-          console.log(('reponse ok'));
-        };
-          return response.json();
-    })
-    .then(function(data) {  //傳回來的資料
-        news = await data.length;
-        console.log(data.length);
-        if(data.length>=1){
-            p.innerHTML = "User name exist, please retry.."
-            p.style.color = "red";
-            exist.innerHTML = "exist";
-        }else{
-            exist.innerHTML = "ok";
-            if (validateUser(name)){
-                p.innerHTML = "Correct"
-                p.style.color = "green";
-            }else{
-                 p.innerHTML = "Incorrect;"
-                p.style.color = "red";
-            }
-        }
-    });
-}
-
-
-
-
-
-
-
-//edit*/
-
-
-
-
-function registerCheck(){
-    let username = document.querySelector('form>fieldset>input[name=username]');
-    let pass = document.querySelector('form>fieldset>input[name=password]');
-    let email = document.querySelector('form>fieldset>input[name=email]');
-    let exist = document.getElementById('exist').innerHTML;
-    if(exist == "ok" && validateUser(username.value) && validatePass(pass.value) && validateEmail(email.value)){
-        console.log("ok, send!")
-    }else{   
-        console.log(exist +" name " + validateUser(username.value) + " pw " + validatePass(pass.value)+" email " + validateEmail(email.value))
-        errorMsg();
-        event.preventDefault(); 
-    }
-    
-}
-
-
-
+//check register name regex exist or not
 function usernameCheck(name){
     const p = document.getElementById('username').nextElementSibling.nextElementSibling;
     const exist = document.getElementById('exist');
@@ -105,7 +39,7 @@ function usernameCheck(name){
         };
           return response.json();
     })
-    .then(function(data) {  //傳回來的資料
+    .then(function(data) {  
        
         console.log(data.length);
         if(data.length>=1){
@@ -125,8 +59,7 @@ function usernameCheck(name){
     });
 }
 
-
-
+//check register password
 function passwordCheck(data){
     const p = document.getElementById('password').nextElementSibling.nextElementSibling;
     if (validatePass(data)){
@@ -138,7 +71,7 @@ function passwordCheck(data){
     }
 }
 
-
+//check register email
 function emailCheck(data){
     const p = document.getElementById('email').nextElementSibling.nextElementSibling;
     if (validateEmail(data)){
@@ -150,10 +83,29 @@ function emailCheck(data){
     }
 }
 
+//register error message
+function errorMsg(){
+    document.getElementById('errors').innerHTML = 'Please input a valid username, password and email';
+}
+
+//register Check
+function registerCheck(){
+    let username = document.querySelector('form>fieldset>input[name=username]');
+    let pass = document.querySelector('form>fieldset>input[name=password]');
+    let email = document.querySelector('form>fieldset>input[name=email]');
+    let exist = document.getElementById('exist').innerHTML;
+    if(exist == "ok" && validateUser(username.value) && validatePass(pass.value) && validateEmail(email.value)){
+        console.log("ok, send!")
+    }else{   
+        console.log(exist +" name " + validateUser(username.value) + " pw " + validatePass(pass.value)+" email " + validateEmail(email.value))
+        errorMsg();
+        event.preventDefault(); 
+    }
+}
 
 
 
-//preview image
+//preview image (product create and update)
 function readURL(input){
     if(input.files && input.files[0]){
         //console.log(input.files);
@@ -219,45 +171,19 @@ function deleteBtn(){
 	}
 }
 
-//add purchase button
+//show add to cart button
 function purchaseBtn(){
-    /*
-    const element = document.querySelector('div[class=product_details]');
-	const link = document.createElement('a');
-	link.setAttribute('href','./cart');
-	const abtn = document.createElement('button');
-	abtn.setAttribute('class','purchase btn-blue');
-    const img = document.createElement('img');
-    img.setAttribute('class','cart');
-    img.setAttribute('src','/img/web/shopping-cart.png'); //pic
-    abtn.appendChild(img);
-    abtn.append('Purchases');
-	link.appendChild(abtn);
-    element.appendChild(link);
-    */
     const element = document.querySelector('div[class=product_details]>a');
     element.classList.remove('hidden');
 }
 
-//add shopping-cart logo
+//show shopping-cart logo
 function purchaseLogo(){
-    /*
-    const element = document.querySelector('nav>ul');
-    const list = document.createElement('li');
-    const link = document.createElement('a');
-    link.setAttribute('href','./cart');
-    const img = document.createElement('img');
-    img.setAttribute('class','cart');
-    img.setAttribute('src','/img/web/shopping-cart.png'); //pic 在/:id中, 加上"/"在img前,才可以正常顯示
-    link.appendChild(img);
-    list.appendChild(link);
-    element.appendChild(list);
-    */
     const element = document.querySelector('nav>ul>li[class=hidden]');
     element.classList.remove('hidden');
 }
 
-//add user control link
+//add admin link
 function adminLink(){
     const element = document.querySelector('nav>ul');
     const list = document.createElement('li');
@@ -281,19 +207,19 @@ function logoutBtn(){
     element.appendChild(link);
 }
 
+//shwo welcome message
 function welcome(){
     const element = document.querySelector('div[class=top-right]>p');
     element.style.width='400px';
     element.style.margin='0px 20px 0px 0px';
 }
 
+//remove login element
 function removeElt(){
     const element = document.querySelector('div[class=top-right]');
     const btn = element.children.item(0);
     element.removeChild(btn);
 }
-
-
 
 // add create, update, delete button for admin login (for product view)
 function cardAdmin(admin){
@@ -309,7 +235,6 @@ function detail(login){
     if(login == true){
         purchaseBtn();
     }
-
 }
 
 //adjust view for user login
@@ -328,12 +253,14 @@ function layoutLogin(login){
     }
 }
 
+//show admin link
 function adminLogin(admin){
     if(admin == true){
         adminLink();
     }
 }
 
+//add item to cart
 function sendCart(data){
     const tagID = data.getAttribute("targetID");
     console.log(tagID);
@@ -362,6 +289,7 @@ function sendCart(data){
 
 }
 
+//increase cart item qty
 function addItem(data){
     const tr = data.parentNode.parentNode;
     const tagID = tr.getAttribute("targetID");
@@ -387,6 +315,7 @@ function addItem(data){
 
 }
 
+//reduce cart item qty
 function reduceItem(data){
     const tr = data.parentNode.parentNode;
     const tagID = tr.getAttribute("targetID");
@@ -412,6 +341,7 @@ function reduceItem(data){
 
 }
 
+//delete cart item
 function deleteItem(data){
     const tr = data.parentNode.parentNode;
     const tagID = tr.getAttribute("targetID");
