@@ -3,33 +3,23 @@ const app = express();
 const fs = require('fs');
 const port = 3000;
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser'); //npm install body-parser
+const bodyParser = require('body-parser'); 
 const urlencodedParser = bodyParser.urlencoded({ extended: false }); 
 //let uri = "mongodb+srv://node-site-example:node-site-example1234@cluster0-1regk.mongodb.net/comics?retryWrites=true&w=majority";
 
+
+//Databas connection
 let uri = "mongodb://localhost:27017/project";
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+//Middlewares
+app.set('view engine', 'pug'); //Setting up pug as template engine
+app.use('/', express.static('public'));
+
+
 //Mongoose Model (Work as a Schema)
-
-const Product = mongoose.model('product', {
-    code: String,
-    name: String,
-    release: String,
-    scale: String,
-    price: Number,
-    parts: String,
-    material: String,
-    image: String
-},'product');
-
-
-const Member = mongoose.model('login', {
-    name: String,
-    password: String,
-    email: String,
-    admin: Boolean
-},'login');
+const Member = require('./modules/member');
+const Product = require('./modules/product');
 
 
 //This is what you use to have multipart form data
@@ -52,12 +42,9 @@ let user = "user";
 let cart = [];
 let cartCount = 0;
 
-app.use('/', express.static('public'));
-//Setting up pug as template engine
-//using the convention to have all views in views folder.
-app.set('view engine', 'pug');
 
-//Modules 00.37
+
+
 
 //register end point
 app.get('/register', (req, res) => {
