@@ -5,11 +5,11 @@ const port = process.env.PORT ||3000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser'); 
 const urlencodedParser = bodyParser.urlencoded({ extended: false }); 
-//let uri = "mongodb+srv://node-site-example:node-site-example1234@cluster0-1regk.mongodb.net/comics?retryWrites=true&w=majority";
 
 
 //Databas connection
-let uri = "mongodb://localhost:27017/project";
+let uri = "mongodb://webuser:web123456@cluster0-shard-00-00-fncee.mongodb.net:27017,cluster0-shard-00-01-fncee.mongodb.net:27017,cluster0-shard-00-02-fncee.mongodb.net:27017/webSiteProject?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
+//let uri = "mongodb://localhost:27017/project";
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //Middlewares
@@ -117,9 +117,9 @@ app.post('/cart', urlencodedParser, async (req, res) => {
     console.log(cart);
     console.log("cartCount :" + cartCount)
 
-    const result = {"cart":cart};
     
-    res.send(result);
+    
+    res.send(cart);
 });
 
 
@@ -147,9 +147,9 @@ app.post('/reduceCart', urlencodedParser, async (req, res) => {
         console.log(cart);
         console.log("cartCount :" + cartCount)
 
-        const result = {"cart":cart};
+        
     }   
-    res.send(result);
+    res.send(cart);
 });
 
 
@@ -193,9 +193,9 @@ app.post('/deleteCart', urlencodedParser, async (req, res) => {
     console.log(cart);
     console.log("cartCount :" + cartCount)
 
-    const result = {"cart":cart};
+   
     
-    res.send(result);
+    res.send(cart);
 });
 
 
