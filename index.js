@@ -154,12 +154,13 @@ app.post('/userLogin', urlencodedParser, async (req, res) => {
 //login end point
 app.get('/logout', (req, res) => {
     
-        login = false;
-        admin = false;
-        user = "user";
-        cart = [];
-        cartCount = 0;
-      
+    console.log(`user ${user} login`); 
+    login = false;
+    admin = false;
+    user = "user";
+    cart = [];
+    cartCount = 0;
+    res.redirect('/');
 })
 
 
