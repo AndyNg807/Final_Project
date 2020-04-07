@@ -7,7 +7,7 @@ body {
 	white-space: nowrap;
 }
 
-/* layout view*/
+/* ------------------layout view-----------------*/
 #welcome{
 	display: inline-block;
 	width:0px;
@@ -136,7 +136,7 @@ footer{
 	transform: translate(-50%, -20%);
 }
 
-/* index view */
+/*----------------- index view -----------------*/
 .main{
 	width: 75%;
 	height: 75vh;
@@ -218,7 +218,7 @@ footer{
 	transform: translate(-50%, -50%);
 }
 
-/* product and card view */
+/* ------------product and card view ----------------*/
 .product{
 	margin: 0px auto;
 	margin-bottom: 20px;
@@ -245,7 +245,7 @@ footer{
 	display: inline-block;
 	vertical-align: top;      /*要加上這個top, display:inline-block才可平排,不會走位*/
 }
-H2{
+.product_details p{
 	width: 20em;  /*em是字體單位*/
 	background-color: rgba(158, 158, 158,0.3);
 	line-height: 180%;
@@ -309,7 +309,17 @@ H2{
 	display: block;
 	clear: block;
 }
-
+.purchase{
+	width:200px;
+	margin: 20px 5px;
+	height: 30px;
+	border-radius: 20px 20px 20px 20px;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	border: none;
+}
 
 
 
@@ -322,37 +332,7 @@ H2{
 
 
 
-
-.purchase{
-	width:200px;
-	margin: 20px 5px;
-	height: 30px;
-	border-radius: 20px 20px 20px 20px;
-	text-align: center;
-	text-decoration: none;
-	color: white;
-	font-weight: bold;
-	border: none;
-	
-}
-
-
-
-.cart{
-	height:25px;
-	width: 25px;
-	vertical-align: middle;
-	margin-right: 10px;
-}
-
-/*form*/
-
-.form{
-	margin: 0px auto;
-	margin-bottom: 10px;
-	min-height: 50vh;
-	display: inline-block;
-}
+/*-----------------------register, request and userUpdate form view---------------------------*/
 
 
 
@@ -386,7 +366,6 @@ input[type="submit"], input[type="reset"]{
 	margin: 5px;
 }
 
-
 .requirements {
 	padding: 3px 0px;
 	max-height: 0px;
@@ -416,23 +395,6 @@ input[type=radio] {
 	transform: scale(2);
 	vertical-align: middle;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*改變上存buttom樣式*/
-
-
-
-
 
 .file-btn {
 	width: 0px;
@@ -467,30 +429,30 @@ input[type=radio] {
 }
 
 .preview img{
-	
 	max-width: 400px;
-	
 }
 
-.tableForm{
+label[for="adminTrue"], label[for="adminFalse"]{
+	margin-left: 10px;
+	width: 60px;
+}	
+
+
+
+
+
+
+/*----------------------------userList view--------------------------------*/
+.searchForm{
 	display: block;
-	
 	margin-left: 10px;
 	padding: 5px;
 }
 
-
-
-
 .userTable{
-	
 	padding: 10px;
-	
 	text-align: left;
 }
-
-
-
 
 .userTable th{
 	font-weight: bold;
@@ -516,19 +478,12 @@ input[type=radio] {
 	font-size: 18px;
 }
 
-
-
 .userTable tr:nth-child(odd){
 	background-color: rgba(117, 121, 117, 0.4)
 }
 
 
-
-label[for="adminTrue"], label[for="adminFalse"]{
-	margin-left: 10px;
-	width: 60px;
-}	
-
+/*-------------cart summary view-----------------*/
 .cartTable{
 	padding: 10px;
 	margin: 20px;
@@ -556,12 +511,9 @@ label[for="adminTrue"], label[for="adminFalse"]{
 	height: 40px;
 }
 
-.cartTable th:nth-child(3), 
-.cartTable th:nth-child(5), 
-.cartTable td:nth-child(3), 
-.cartTable td:nth-child(5){
+.cartTable th:nth-child(3), .cartTable th:nth-child(5), 
+.cartTable td:nth-child(3), .cartTable td:nth-child(5){
 	width: 40px;
-	
 	text-align: center;
 }
 
@@ -584,12 +536,9 @@ label[for="adminTrue"], label[for="adminFalse"]{
 	width: 150px;
 }
 
-.cartTable th:nth-child(6), 
-.cartTable th:nth-child(7), 
-.cartTable td:nth-child(6), 
-.cartTable td:nth-child(7){
+.cartTable th:nth-child(6), .cartTable th:nth-child(7), 
+.cartTable td:nth-child(6), .cartTable td:nth-child(7){
 	width: 150px;
-	
 	text-align: right;
 }
 
@@ -607,7 +556,7 @@ label[for="adminTrue"], label[for="adminFalse"]{
 }
 
 
-/* about view */
+/* ----------------------about view --------------------------*/
 .shop{
 	margin:10px;
 	max-height: 250px;
@@ -625,7 +574,7 @@ label[for="adminTrue"], label[for="adminFalse"]{
 	
 }
 
-/*common css*/
+/*------------------common css--------------------*/
 .title{
 	color: white;
 	font-size: 30px;
@@ -673,4 +622,16 @@ label[for="adminTrue"], label[for="adminFalse"]{
 	color:greenyellow;
 	cursor: pointer;
 	background-color: rgb(230, 59, 59); 
+}
+.cart{
+	height:25px;
+	width: 25px;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+.form{
+	margin: 0px auto;
+	margin-bottom: 10px;
+	min-height: 50vh;
+	display: inline-block;
 }

@@ -3,7 +3,7 @@ extends ./layout.pug
 block content
     .form
         p.title User Control
-        form.tableForm(action='/findUser' method='post')
+        form.searchForm(action='/findUser' method='post')
             label(for='findUser') Search by Name:
             input#findUser(type='text' name='findUser')
             input.button.btn-blue(type='submit' value='Search')
