@@ -133,7 +133,7 @@ app.post('/userLogin', urlencodedParser, async (req, res) => {
             user=document[0].name;
             console.log(`user ${user} login successed`)
             res.redirect('/');
-            return
+            return res.end();
         }
     }
         console.log(`user ${name} login failed`)
