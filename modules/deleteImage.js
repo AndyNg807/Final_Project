@@ -1,4 +1,6 @@
 //delete img file script
+const fs = require('fs');
+
 const deleteImage = function(image){
     const dir = __dirname + "/public/img/product/" + image;
     if (fs.existsSync(dir)) {
