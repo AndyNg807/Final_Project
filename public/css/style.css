@@ -555,6 +555,42 @@ label[for="adminTrue"], label[for="adminFalse"]{
 
 }
 
+/* ----------------------Order List view --------------------------*/
+
+.orderTable{
+	padding: 10px;
+	text-align: left;
+}
+
+.orderTable th{
+	font-weight: bold;
+	font-size: 20px;
+	width: 180px;
+	height: 30px;
+	vertical-align: middle;
+	text-shadow: 2px 2px 5px white; 
+	background-color: rgba(117, 121, 117, 0.4)
+}
+
+.orderTable td{
+	vertical-align: middle;
+	font-size: 16px;
+	height: 40px;
+	padding-left: 5px;
+}
+
+.orderTable hr{
+	border: 0;
+    border-bottom: 2px dashed rgb(57, 7, 236);
+	background: #999;
+	margin-top: 5px;
+}
+
+.orderID{
+	ffont-weight: bold;
+	text-shadow: 2px 2px 5px white;
+}
+
 
 /* ----------------------about view --------------------------*/
 .shop{

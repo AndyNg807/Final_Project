@@ -1,0 +1,48 @@
+extends ./layout.pug
+
+block content
+    .form
+        p.title OrderID #{variables.order._id}
+        table.orderTable
+            tbody
+                form(action='/orderUpdate' method='post')
+                    tr
+                        th Date
+                        th Buyer
+                        th Sub Total
+                        th VAT
+                        th Total
+                        th
+                            input.button.btn-green(type='submit' value='Submit')
+                        th
+                            input.button.btn-red(type='reset' value='Reset')
+                    tr
+                        td= moment(variables.order.date).format('DD-MMM-YYYY')
+                        td= variables.order.name
+                        td= variables.order.subTotal
+                        td= variables.order.VAT
+                        td= variables.order.totalPrice
+                        td
+                        td
+                    - for(let x = 0; x<variables.order.description.length; x++){
+                        tr
+                            td
+                            td(colspan='2') Item #{x + 1} : #{variables.order.description[x].code}
+                            td(colspan='4') QTY : #{variables.order.description[x].qty}
+                    - }
+                    tr
+                        td Comment :
+                        td(colspan='6')
+                            input(type='text' name='comments' value= variables.order.comments)
+                    tr
+                        td(colspan='7')
+                            hr
+                    tr
+                        td
+                            input(type='hidden' name='id' value= variables.order._id)
+                        td
+                        td
+                        td
+                        td
+                        td
+                        td

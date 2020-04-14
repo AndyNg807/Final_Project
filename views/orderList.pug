@@ -1,0 +1,52 @@
+extends ./layout.pug
+
+block content
+    .form
+        p.title Order List
+        form.tableForm(action='/orderList' method='post')
+            label(for='findUser') Search by Name:
+            input#findUser(type='text' name='findUser')
+            input.button.btn-blue(type='submit' value='Search')
+        hr.line
+        p=  variables.main.result
+        table.orderTable
+            tbody
+                - for(let i = 0; i<variables.order.length; i++){
+                    tr
+                        th Order #{i + 1}
+                        th Date
+                        th Buyer
+                        th Sub Total
+                        th VAT
+                        th Total
+                        th
+                            a(href='/orderUpdate/' + variables.order[i]._id)
+                                button.button.btn-green Add Comment
+                        th
+                            a(href='/orderDelete/' + variables.order[i]._id)
+                                button.button.btn-red Delete
+                    tr
+                        td(class="orderID")= variables.order[i]._id
+                        td= moment(variables.order[i].date).format('DD-MMM-YYYY')
+                        td= variables.order[i].name
+                        td= variables.order[i].subTotal
+                        td= variables.order[i].VAT
+                        td= variables.order[i].totalPrice
+                        td
+                        td
+                    - for(let x = 0; x<variables.order[i].description.length; x++){
+                        tr
+                            td
+                            td
+                            td(colspan='2') Item #{x + 1} : #{variables.order[i].description[x].code}
+                            td(colspan='4') QTY : #{variables.order[i].description[x].qty}
+                    - }
+                    tr
+                        td
+                        td Comment :
+                        td(colspan='6')= variables.order[i].comments
+                    tr
+                        td
+                        td(colspan='7')
+                            hr
+                - }

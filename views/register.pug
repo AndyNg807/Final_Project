@@ -2,11 +2,13 @@ extends ./layout.pug
 
 block content
   .form
-    form.register(action='/addUser', method='post', onsubmit="registerCheck()", name='regisgter')
+    //-form.register(action='/addUser', method='post', onsubmit="registerCheck()", name='regisgter')
+    form.register(action='/register', method='post', onsubmit="registerCheck()", name='regisgter')
       p.title Register
       fieldset
         label(for='username') Username:
         input#username(type='text', name='username', onchange='usernameCheck(this.value)', required)
+        //-input#username(type='text', name='username', onchange='fetchtest(this.value)', required)
         .requirements
           | Least 4 characters.
         p#usernameCheck.dataCheck
@@ -23,7 +25,7 @@ block content
           | Please input a valid email.
         p#emailCheck.dataCheck
       fieldset
-        input.button.btn-blue(type='submit', value='Register', onclick="registerCheck(event)")
+        input.button.btn-blue(type='submit', value='Register')
         input.button.btn-red(type='reset', value='Reset')
       #errors
       #exist.hidden

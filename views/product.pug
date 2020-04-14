@@ -8,7 +8,7 @@ block content
       img(src='/img/product/' + variables.srw.image, alt= variables.srw._id)
     .product_details
       div
-        p Product specifications
+        h2 Product specifications
         dl(class="specification clearfix")
           dt Release month:
           dd= variables.srw.release
@@ -23,6 +23,6 @@ block content
       a.hidden
         button.purchase.btn-blue(onclick="sendCart(this)", targetid='id=' + variables.srw._id + '&code=' + variables.srw.code + '&price=' + variables.srw.price + '&image=' + variables.srw.image)
           img.cart(src='/img/web/shopping-cart.png')
-          | Add to Cart
+          | add to cart
   script.
     detail(#{variables.main.stage});

@@ -25,8 +25,7 @@ function validateEmail(email) {
 
 //check register name regex exist or not
 function usernameCheck(name){
-    const p = document.getElementById('username').nextElementSibling.nextElementSibling;
-    const exist = document.getElementById('exist');
+    const p = document.getElementById('usernameCheck');
     fetch('/dataCheck',{
         method:"POST",
         body:new URLSearchParams(`username=${name}`)
@@ -45,9 +44,7 @@ function usernameCheck(name){
         if(data.length>=1){
             p.innerHTML = "User name exist, please retry.."
             p.style.color = "red";
-            exist.innerHTML = "exist";
         }else{
-            exist.innerHTML = "ok";
             if (validateUser(name)){
                 p.innerHTML = "Correct"
                 p.style.color = "green";
@@ -61,7 +58,7 @@ function usernameCheck(name){
 
 //check register password
 function passwordCheck(data){
-    const p = document.getElementById('password').nextElementSibling.nextElementSibling;
+    const p = document.getElementById('passwordCheck');
     if (validatePass(data)){
         p.innerHTML = "Correct"
         p.style.color = "green";
@@ -73,7 +70,7 @@ function passwordCheck(data){
 
 //check register email
 function emailCheck(data){
-    const p = document.getElementById('email').nextElementSibling.nextElementSibling;
+    const p = document.getElementById('emailCheck');
     if (validateEmail(data)){
         p.innerHTML = "Correct"
         p.style.color = "green";
@@ -90,17 +87,20 @@ function errorMsg(){
 
 //register Check
 function registerCheck(){
-    let username = document.querySelector('form>fieldset>input[name=username]');
-    let pass = document.querySelector('form>fieldset>input[name=password]');
-    let email = document.querySelector('form>fieldset>input[name=email]');
-    let exist = document.getElementById('exist').innerHTML;
-    if(exist == "ok" && validateUser(username.value) && validatePass(pass.value) && validateEmail(email.value)){
-        console.log("ok, send!")
+    let username = document.getElementById('usernameCheck').innerHTML;
+    //console.log("username :" + username);
+    let pass = document.getElementById('passwordCheck').innerHTML;
+    //console.log("password :" + pass);
+    let email = document.getElementById('emailCheck').innerHTML;
+    //console.log("email :" + email);
+    if(username == "Correct" && pass == "Correct" && email == "Correct"){
+        //console.log("ok, send!")
     }else{   
-        console.log(exist +" name " + validateUser(username.value) + " pw " + validatePass(pass.value)+" email " + validateEmail(email.value))
+        //console.log(" username " + username + " pw " + pass +" email " + email);
         errorMsg();
         event.preventDefault(); 
     }
+    
 }
 
 
@@ -125,7 +125,7 @@ function readURL(input){
 function createBtn(){
     const element = document.querySelector('p[class=title]');
 	const link = document.createElement('a');
-	link.setAttribute('href','/create');
+	link.setAttribute('href','/productCreate');
 	const abtn = document.createElement('button');
 	abtn.innerText = 'create'
 	abtn.setAttribute('class','button btn-blue');
@@ -142,7 +142,7 @@ function updateBtn(){
 		const img = element[i].children[1];
 		const id = img.getAttribute('alt');
 		const link = document.createElement('a');
-		link.setAttribute('href','/update/' + id);
+		link.setAttribute('href','/productUpdate/' + id);
 		const abtn = document.createElement('button');
 		abtn.innerText = 'update'
 		abtn.setAttribute('class','button btn-green');
@@ -160,8 +160,9 @@ function deleteBtn(){
 		const img = element[i].children[1];
 		const id = img.getAttribute('alt');
 		const link = document.createElement('a');
-		link.setAttribute('href','/delete/' + id);
-		const abtn = document.createElement('button');
+		link.setAttribute('href','/productDelete/' + id);
+        link.setAttribute('onclick','return confirm("confirm delete?")');
+        const abtn = document.createElement('button');
 		abtn.innerText = 'delete'
 		abtn.setAttribute('class','button btn-red');
 		abtn.style.fontSize='20';
@@ -190,7 +191,19 @@ function adminLink(){
     const link = document.createElement('a');
     const admin = document.createTextNode("Admin");
     link.appendChild(admin);
-    link.setAttribute('href','/userControl');
+    link.setAttribute('href','/userList');
+    list.appendChild(link);
+    element.insertBefore(list, element.childNodes[0]);
+}
+
+//add sold link
+function soldLink(){
+    const element = document.querySelector('nav>ul');
+    const list = document.createElement('li');
+    const link = document.createElement('a');
+    const sold = document.createTextNode("Sold");
+    link.appendChild(sold);
+    link.setAttribute('href','/orderList');
     list.appendChild(link);
     element.insertBefore(list, element.childNodes[0]);
 }
@@ -257,6 +270,7 @@ function layoutLogin(login){
 function adminLogin(admin){
     if(admin == true){
         adminLink();
+        soldLink();
     }
 }
 
@@ -269,7 +283,7 @@ function sendCart(data){
     const id = element.alt;
     console.log(id);
     
-    fetch('/cart',{
+    fetch('/addCart',{
         method:"POST",
         body:new URLSearchParams(tagID)
     })
@@ -281,7 +295,7 @@ function sendCart(data){
         };
           return response.json();
     })
-    .then(function(data) {  //傳回來的資料
+    .then(function(data) {  
        
         console.log(data);
     });
@@ -295,7 +309,7 @@ function addItem(data){
     const tagID = tr.getAttribute("targetID");
     console.log(tagID);
     
-    fetch('/cart',{
+    fetch('/addCart',{
         method:"POST",
         body:new URLSearchParams(tagID)
     })
@@ -307,7 +321,7 @@ function addItem(data){
         };
           return response.json();
     })
-    .then(function(data) {  //傳回來的資料
+    .then(function(data) {  
        
         console.log(data);
     });
@@ -333,7 +347,7 @@ function reduceItem(data){
         };
           return response.json();
     })
-    .then(function(data) {  //傳回來的資料
+    .then(function(data) {  
        
         console.log(data);
     });
@@ -359,7 +373,7 @@ function deleteItem(data){
         };
           return response.json();
     })
-    .then(function(data) {  //傳回來的資料
+    .then(function(data) {  
        
         console.log(data);
     });
